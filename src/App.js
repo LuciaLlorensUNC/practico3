@@ -90,7 +90,7 @@ function App() {
             <div className="rondas">
               <p id="numeroDeRonda" />
               <p id="eleccionJugador" />
-              <JugadaPC id="eleccionComputadora" /> 
+              <JugadaPC/> 
               <p id="resultadoRonda" />
             </div>
             {/*Espacio para el conteo de los puntajes generales*/}

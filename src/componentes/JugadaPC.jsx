@@ -11,7 +11,7 @@ function JugadaPC() {
 
     return (
         <div>
-          <p>La computadora eligió {jugadaComputadora}</p>
+          <p id="eleccionComputadora">La computadora eligió {jugadaComputadora}</p>
           {/* No sé si quiero que esto se vea. Tal vez hacer aparecer solo al final*/}
         </div>
     );

@@ -1,8 +1,8 @@
-import Papel from './Papel.jpg';
-import Piedra from './Piedra.jpg';
-import Tijera1 from './Tijera1.jpg';
-import SarahConnor from './SarahConnor.png';
-import Terminator1 from './Terminator1.png';
+import Papel from '.public/Papel.jpg';
+import Piedra from '.public/Piedra.jpg';
+import Tijera1 from '.public/Tijera1.jpg';
+import SarahConnor from '.public/SarahConnor.png';
+import Terminator1 from '.public/Terminator1.png';
 import './App.css';
 
 function App() {

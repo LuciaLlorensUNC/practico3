@@ -1,8 +1,8 @@
-import Papel from '.public/Papel.jpg';
-import Piedra from '.public/Piedra.jpg';
-import Tijera1 from '.public/Tijera1.jpg';
-import SarahConnor from '.public/SarahConnor.png';
-import Terminator1 from '.public/Terminator1.png';
+import Papel from './img/Papel.jpg';
+import Piedra from './img/Piedra.jpg';
+import Tijera1 from './img/Tijera1.jpg';
+import SarahConnor from './img/SarahConnor.png';
+import Terminator1 from './img/Terminator1.png';
 import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <div className="juego">
           {/* Imagen de la izquierda, aparece con el resultado final */}
           <div className="img" id="img1">
-            <img src={SarahConnor.png} alt="Sarah Connor" />
+            <img src={SarahConnor} alt="Sarah Connor" />
           </div>
 
           <div className="panelDeControl" id="panelDeControl">
@@ -49,7 +49,7 @@ function App() {
                   className="botónOpción"
                   style={{ cursor: "pointer" }}
                 >
-                  <img className="imagen" src={Piedra.jpg} alt="piedra" />
+                  <img className="imagen" src={Piedra} alt="piedra" />
                 </button>
                 {/* Imagen seleccionable de Papel*/}
                 <button
@@ -59,7 +59,7 @@ function App() {
                   className="botónOpción"
                   style={{ cursor: "pointer" }}
                 >
-                  <img className="imagen" src={Papel.jpg} alt="papel" />
+                  <img className="imagen" src={Papel} alt="papel" />
                 </button>
                 {/* Imagen seleccionable de Tijera*/}
                 <button
@@ -69,7 +69,7 @@ function App() {
                   className="botónOpción"
                   style={{ cursor: "pointer" }}
                 >
-                  <img className="imagen" src={Tijera1.jpg} alt="tijera" />
+                  <img className="imagen" src={Tijera1} alt="tijera" />
                 </button>
               </div>
               {/*Mensaje oculto; visible en el caso de que no se seleccione una opción*/}
@@ -125,7 +125,7 @@ function App() {
 
           {/* Imagen de la derecha, que aparece con el resultado final */}
           <div className="img" id="img2">
-            <img src={Terminator1.png} alt="Terminator" />
+            <img src={Terminator1} alt="Terminator" />
           </div>
         </div>
       </header>

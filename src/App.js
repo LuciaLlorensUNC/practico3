@@ -1,5 +1,6 @@
 import React from 'react';
 import ObtencionNombre from './componentes/ObtencionNombre.jsx';
+import JugadaPC from './componentes/JugadaPC.jsx';
 import Papel from './img/Papel.jpg';
 import Piedra from './img/Piedra.jpg';
 import Tijera1 from './img/Tijera1.jpg';
@@ -89,7 +90,7 @@ function App() {
             <div className="rondas">
               <p id="numeroDeRonda" />
               <p id="eleccionJugador" />
-              <p id="eleccionComputadora" />
+              <JugadaPC id="eleccionComputadora" /> 
               <p id="resultadoRonda" />
             </div>
             {/*Espacio para el conteo de los puntajes generales*/}

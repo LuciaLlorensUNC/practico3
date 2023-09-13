@@ -18,7 +18,7 @@ function App() {
           <div className="panelDeControl" id="panelDeControl">
             <div className="base">
             {/*Título tamaño grande*/}
-              <h1>Piedra, Papel o Tijera</h1>
+              <h1 data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
             </div>
 
             <div className="bloque" id="nombreJugador">

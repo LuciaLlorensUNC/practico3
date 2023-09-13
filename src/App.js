@@ -1,3 +1,5 @@
+import React from 'react';
+import ObtencionNombre from './componentes/ObtencionNombre.jsx';
 import Papel from './img/Papel.jpg';
 import Piedra from './img/Piedra.jpg';
 import Tijera1 from './img/Tijera1.jpg';
@@ -21,21 +23,8 @@ function App() {
               <h1 data-testid="tituloJuego">Piedra, Papel o Tijera</h1>
             </div>
 
-            <div className="bloque" id="nombreJugador">
-              <label htmlFor="jugador">Jugador:</label>
-              <br />
-              {/*Campo de texto para el nombre del jugador*/}
-              <div className="inputNombre">
-                <input
-                  type="text"
-                  name="jugador"
-                  id="jugador"
-                  placeholder="Ingresa un nombre!"
-                  required=""
-                />
-              </div>
-              {/*Mensaje oculto; visible en el caso de que no se ingrese un nombre*/}
-              <p id="mensajeCampoVacíoNombre">Ingresa un nombre para jugar!</p>
+            <div>
+                <ObtencionNombre />
             </div>
 
             <div className="opciones">

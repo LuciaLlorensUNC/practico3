@@ -7,6 +7,7 @@ import './App.css';
 import JugadaUsuario from './componentes/JugadaUsuario.jsx';
 import AuxiliarJuego from './componentes/AuxiliarJuego.jsx';
 import { useState } from 'react';
+import Marcador from './componentes/marcador.jsx';
 
 
 function App() {
@@ -64,18 +65,7 @@ function App() {
               <AuxiliarJuego jugadaUsuario={eleccionJugador} jugadaComputadora={jugadaComputadora}/>
             </div>
             {/*Espacio para el conteo de los puntajes generales*/}
-            <div className="puntajes">
-              <div className="punteroUsuario">
-                <p id="nombreJugador_" />
-                <p id="puntajeUsuario">0</p>
-              </div>
-              <div className="punteroComputadora">
-                <p id="nombreComputadora">Computadora</p>
-                <p id="puntajeComputadora">0</p>
-              </div>
-              <p id="empates">empates</p>
-              <p id="cantidadEmpates">0</p>
-            </div>
+            <Marcador/>
             {/*Espacio para presentar el resultado final (mejor de 3 o 5 rondas)*/}
             <div className="resultadoFinal" id="resultadoFinal_">
               <p id="títuloResultadoFinal">Resultado final:</p>

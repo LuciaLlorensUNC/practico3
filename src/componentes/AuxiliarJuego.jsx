@@ -1,6 +1,7 @@
 import "../App.css";
+import Marcador from "./marcador";
 
-function AuxiliarJuego({jugadaUsuario, jugadaComputadora}) {
+function AuxiliarJuego({jugadaUsuario, jugadaComputadora, resultadoJuego}) {
     const ResultadoJuego = () => {
         switch (jugadaUsuario) {
             case "piedra":
@@ -46,6 +47,7 @@ function AuxiliarJuego({jugadaUsuario, jugadaComputadora}) {
     return (
         <div>
            <p id="resultadoRonda">{resultado}</p>
+           <Marcador resultadoJuego={resultado} />
         </div>
     );
 }

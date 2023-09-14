@@ -5,8 +5,14 @@ import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
 import './App.css';
 import JugadaUsuario from './componentes/JugadaUsuario.jsx';
+import AuxiliarJuego from './componentes/AuxiliarJuego.jsx';
+import { useState } from 'react';
+
 
 function App() {
+  const [eleccionJugador, setEleccionJugador] = useState('');
+  const [jugadaComputadora, setJugadaComputadora] = useState('');
+  
   return (
     <>
       <header>
@@ -27,7 +33,7 @@ function App() {
             </div>
 
             <div>
-              <JugadaUsuario />
+              <JugadaUsuario setEleccionJugador={setEleccionJugador} />
             </div>
 
             <div className="botón">
@@ -53,9 +59,9 @@ function App() {
           <div className="empezamosElJuego" id="empezamosElJuego">
             <div className="rondas">
               <p id="numeroDeRonda" />
-              <p id="eleccionJugador" />
-              <JugadaPC/> 
-              <p id="resultadoRonda" />
+              {eleccionJugador && (<p>{`El jugador eligió ${eleccionJugador}`}</p>)}
+              <JugadaPC setJugadaComputadora={setJugadaComputadora}/> 
+              <AuxiliarJuego jugadaUsuario={eleccionJugador} jugadaComputadora={jugadaComputadora}/>
             </div>
             {/*Espacio para el conteo de los puntajes generales*/}
             <div className="puntajes">

@@ -4,7 +4,7 @@ import Papel from '../img/Papel.jpg';
 import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
-function JugadaUsuario() {
+function JugadaUsuario({ setEleccionJugador }) {
     const [jugadaUsuario, setJugadaUsuario] = useState("ninguna");
 
     const CambioPiedra = (e) => {

@@ -14,13 +14,11 @@ function App() {
   const [eleccionJugador, setEleccionJugador] = useState('');
   const [jugadaComputadora, setJugadaComputadora] = useState('');
   const [mostrarInterfaz, setMostrarInterfaz] = useState(false);
+  
   const mostrarEmpezarJuego = () => {
-    // Cambia el estado para mostrar la interfaz
+    // Cambia el estado para mostrar la interfaz. ESTE CÓDIGO NO ESTÁ FUNCIONANDO
     setMostrarInterfaz(true);
-  };
-  const ApretarBotonJugar = () => {
-    AuxiliarJuego();
-    mostrarEmpezarJuego();
+    console.log("toy emboladísima");
   };
 
   
@@ -49,12 +47,12 @@ function App() {
 
             <div className="botón">
               {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
-              <button type="button" id="botónJugar" onClick={ApretarBotonJugar}> Jugar! </button>
+              <button type="button" id="botónJugar" onClick={mostrarEmpezarJuego}> Jugar! </button>
             </div>
 
             <div className="botón">
               {/*Botón que al ser presionado ejecuta la función borrarCampos()*/}
-              <button type="button" id="botónReiniciar" onClick="borrarCampos()"> Reiniciar </button>
+              <button type="button" id="botónReiniciar"> Reiniciar </button>
             </div>
           </div>
 

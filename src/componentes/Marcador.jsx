@@ -42,5 +42,6 @@ function Marcador({resultadoJuego}) {
             </div>
     );
 }
+//después podría ver si puedo hacerlo con {setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario += 1)}
 
 export default Marcador;

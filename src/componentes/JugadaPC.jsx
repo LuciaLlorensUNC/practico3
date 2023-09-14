@@ -1,6 +1,6 @@
 import "../App.css";
 
-function JugadaPC() {
+function JugadaPC({setJugadaComputadora}) {
     const obtenerJugadaComputadora = () => {
         const lista = ["piedra", "papel", "tijera"];
         const numero = Math.floor(Math.random()*3);
@@ -8,6 +8,7 @@ function JugadaPC() {
     };
 
     const jugadaComputadora= obtenerJugadaComputadora();
+    setJugadaComputadora(jugadaComputadora);
 
     return (
         <div>

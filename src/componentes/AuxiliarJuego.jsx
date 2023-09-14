@@ -1,5 +1,5 @@
 import "../App.css";
-import Marcador from "./marcador";
+import Marcador from "./Marcador";
 
 function AuxiliarJuego({jugadaUsuario, jugadaComputadora, resultadoJuego}) {
     const ResultadoJuego = () => {

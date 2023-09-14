@@ -1,12 +1,10 @@
 import React from 'react';
 import ObtencionNombre from './componentes/ObtencionNombre.jsx';
 import JugadaPC from './componentes/JugadaPC.jsx';
-import Papel from './img/Papel.jpg';
-import Piedra from './img/Piedra.jpg';
-import Tijera1 from './img/Tijera1.jpg';
 import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
 import './App.css';
+import JugadaUsuario from './componentes/JugadaUsuario.jsx';
 
 function App() {
   return (
@@ -28,42 +26,8 @@ function App() {
                 <ObtencionNombre />
             </div>
 
-            <div className="opciones">
-              {/*Grupo de opciones para seleccionar*/}
-              <div className="botón_imagen">
-              {/* Imagen seleccionable de Piedra*/}
-                <button
-                  type="button"
-                  value="piedra"
-                  id="piedra"
-                  className="botónOpción"
-                  style={{ cursor: "pointer" }}
-                >
-                  <img className="imagen" src={Piedra} alt="piedra" />
-                </button>
-                {/* Imagen seleccionable de Papel*/}
-                <button
-                  type="button"
-                  value="papel"
-                  id="papel"
-                  className="botónOpción"
-                  style={{ cursor: "pointer" }}
-                >
-                  <img className="imagen" src={Papel} alt="papel" />
-                </button>
-                {/* Imagen seleccionable de Tijera*/}
-                <button
-                  type="button"
-                  value="tijera"
-                  id="tijera"
-                  className="botónOpción"
-                  style={{ cursor: "pointer" }}
-                >
-                  <img className="imagen" src={Tijera1} alt="tijera" />
-                </button>
-              </div>
-              {/*Mensaje oculto; visible en el caso de que no se seleccione una opción*/}
-              <p id="mensajeSinSeleccion">¿Piedra, papel o tijera?</p>
+            <div>
+              <JugadaUsuario />
             </div>
 
             <div className="botón">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../App.css';
 
-function ObtencionNombre(props) {
+function ObtencionNombre() {
     const [nombre, setNombreJugador] = useState("");
     const [Saludo, setSaludar] = useState(false);
 

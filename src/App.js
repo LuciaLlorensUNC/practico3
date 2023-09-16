@@ -11,16 +11,28 @@ import Marcador from './componentes/Marcador.jsx';
 
 
 function App() {
-  const [eleccionJugador, setEleccionJugador] = useState('');
+  const [jugadaUsuario, setJugadaUsuario] = useState("ninguna");
   const [jugadaComputadora, setJugadaComputadora] = useState('');
   const [mostrarInterfaz, setMostrarInterfaz] = useState(false);
+  const [nombre, setNombreJugador] = useState("");
+  const [saludo, setSaludar] = useState(false);
+  const [mensajeNombreError, setMensajeNombreError] = useState(false);
+  const [resultadoJuego, setResultadoJuego] = useState("ninguno");
+
+  const CambiarNombre = (e) => {
+    setNombreJugador(e.target.value);
+    if (e.target.value !== '') {
+        setSaludar(true);
+    } else {
+        setSaludar(false);
+        setMensajeNombreError(true);
+    }
+};
   
   const mostrarEmpezarJuego = () => {
-    // Cambia el estado para mostrar la interfaz. ESTE CÓDIGO NO ESTÁ FUNCIONANDO
+    // Cambia el estado para mostrar la interfaz. 
     setMostrarInterfaz(true);
-    console.log("toy emboladísima");
   };
-
   
   return (
     <>
@@ -38,11 +50,11 @@ function App() {
             </div>
 
             <div>
-                <ObtencionNombre />
+                <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} onChange={CambiarNombre}  />
             </div>
 
             <div>
-              <JugadaUsuario setEleccionJugador={setEleccionJugador} />
+              <JugadaUsuario setJugadaUsuario={setJugadaUsuario} />
             </div>
 
             <div className="botón">
@@ -61,9 +73,9 @@ function App() {
             <div className="empezamosElJuego" id="empezamosElJuego">
               <div className="rondas">
                 <p id="numeroDeRonda" />
-                {eleccionJugador && (<p>{`El jugador eligió ${eleccionJugador}`}</p>)}
+                <p>{"El jugador eligió ${jugadaUsuario}"}</p>
                 <JugadaPC setJugadaComputadora={setJugadaComputadora}/> 
-                <AuxiliarJuego jugadaUsuario={eleccionJugador} jugadaComputadora={jugadaComputadora}/>
+                <AuxiliarJuego jugadaUsuario={jugadaUsuario} jugadaComputadora={jugadaComputadora} setResultadoJuego={setResultadoJuego} resultadoJuego={resultadoJuego}/>
               </div>
               {/*Espacio para el conteo de los puntajes generales*/}
               <Marcador/>

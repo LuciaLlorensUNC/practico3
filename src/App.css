@@ -182,7 +182,6 @@ input::placeholder {
   background-color: #FFBD00;
   border: 6px solid #6C0079;
   border-radius: 20px;
-  display: none;
   transition: box-shadow 0.4s ease;
 }
 

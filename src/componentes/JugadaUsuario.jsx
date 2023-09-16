@@ -1,22 +1,22 @@
-import { useState } from "react";
 import "../App.css";
 import Papel from '../img/Papel.jpg';
 import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
-function JugadaUsuario({ setEleccionJugador }) {
-    const [jugadaUsuario, setJugadaUsuario] = useState("ninguna");
-
-    const CambioPiedra = (e) => {
-        setJugadaUsuario("piedra");
+function JugadaUsuario({jugadaUsuario, setJugadaUsuario}) {
+  const CambioPiedra = (e) => { 
+    setJugadaUsuario("piedra");
+    console.log("piedra");
     };
 
     const CambioPapel = (e) => {
-        setJugadaUsuario("papel");
+      setJugadaUsuario("papel");
+      console.log("papel");
     };
 
     const CambioTijera = (e) => {
-        setJugadaUsuario("tijera");
+      setJugadaUsuario("tijera");
+      console.log("tumama");
     };
 
     return (

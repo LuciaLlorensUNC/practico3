@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ejemplopractico3/static/css/main.21ba0d68.css",
-    "main.js": "/ejemplopractico3/static/js/main.3fe31caa.js",
+    "main.css": "/ejemplopractico3/static/css/main.e9fb5a66.css",
+    "main.js": "/ejemplopractico3/static/js/main.e07fb88a.js",
     "static/js/787.f9640105.chunk.js": "/ejemplopractico3/static/js/787.f9640105.chunk.js",
     "static/media/Terminator1.png": "/ejemplopractico3/static/media/Terminator1.6c46287f80cd218cda62.png",
     "static/media/SarahConnor.png": "/ejemplopractico3/static/media/SarahConnor.7a97142ea8c1ef5aa1a3.png",
@@ -9,12 +9,12 @@
     "static/media/Papel.jpg": "/ejemplopractico3/static/media/Papel.92463a4c06429e29bd22.jpg",
     "static/media/Piedra.jpg": "/ejemplopractico3/static/media/Piedra.e3627304b97b18d87668.jpg",
     "index.html": "/ejemplopractico3/index.html",
-    "main.21ba0d68.css.map": "/ejemplopractico3/static/css/main.21ba0d68.css.map",
-    "main.3fe31caa.js.map": "/ejemplopractico3/static/js/main.3fe31caa.js.map",
+    "main.e9fb5a66.css.map": "/ejemplopractico3/static/css/main.e9fb5a66.css.map",
+    "main.e07fb88a.js.map": "/ejemplopractico3/static/js/main.e07fb88a.js.map",
     "787.f9640105.chunk.js.map": "/ejemplopractico3/static/js/787.f9640105.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21ba0d68.css",
-    "static/js/main.3fe31caa.js"
+    "static/css/main.e9fb5a66.css",
+    "static/js/main.e07fb88a.js"
   ]
 }

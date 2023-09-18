@@ -14,8 +14,8 @@ function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError}) {
                     required=""
                 />
             </div>
-
-            {(saludo && <p>Hola, {nombre}!</p>) || (mensajeNombreError && <p id="mensajeCampoVacíoNombre">Ingresa un nombre para jugar!</p>)}
+            {(saludo && <p>Hola, {nombre}!</p>)} 
+            <p id="mensajeCampoVacíoNombre"> {mensajeNombreError} </p>
         </div>  
     ); 
 }

@@ -1,36 +1,10 @@
-import { useState } from "react";
 import "../App.css";
 
-function Marcador({resultadoJuego}) {
-    const [puntajeUsuario, setPuntajeUsuario] = useState(0);
-    const [puntajeComputadora, setPuntajeComputadora] = useState(0);
-    const [empates, setEmpates] = useState(0);
-
-    const SumaPuntajes = (resultado) => {
-        switch (resultado) {
-            case "Gana la computadora":
-                setPuntajeComputadora(puntajeComputadora + 1);
-
-                break;
-            case "Gana el usuario":
-                setPuntajeUsuario(puntajeUsuario + 1);
-                break;
-            case "Empate":
-                setEmpates(empates + 1);
-                break;
-            default:
-                break;
-        };
-    };
-
-    if (resultadoJuego) {
-        SumaPuntajes(resultadoJuego);
-      }
-
+function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
     return (
         <div className="puntajes">
               <div className="punteroUsuario">
-                <p id="nombreJugador_" /> 
+                <p id="nombreJugador_"> {nombre}</p>
                 <p id="puntajeUsuario">{puntajeUsuario} </p>
               </div>
               <div className="punteroComputadora">

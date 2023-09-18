@@ -3,7 +3,7 @@ import Papel from '../img/Papel.jpg';
 import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
-function Jugadas({jugadaUsuario, setJugadaUsuario, setJugadaComputadora}) {
+function Jugadas({jugadaUsuario, setJugadaUsuario, setJugadaComputadora, mensajeOpcionError}) {
   const ObtenerJugadaComputadora = (e) => {
     const lista = ["piedra", "papel", "tijera"];
     const numero = Math.floor(Math.random()*3);
@@ -67,7 +67,7 @@ function Jugadas({jugadaUsuario, setJugadaUsuario, setJugadaComputadora}) {
                 </button>
               </div>
               {/*Mensaje oculto; visible en el caso de que no se seleccione una opción*/}
-              <p id="mensajeSinSeleccion">¿Piedra, papel o tijera?</p>
+              <p id="mensajeSinSeleccion"> {mensajeOpcionError && ("¿Piedra, papel o tijera?")} </p>
             </div>
     );
 }

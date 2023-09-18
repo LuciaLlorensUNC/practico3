@@ -280,7 +280,6 @@ input::placeholder {
 
 /* Cuadro en el que se muestra el resultado final*/
 #resultadoFinal_ {
-  display: none;
   margin: 10px 0;
   padding: 0px;
   background: #390099;
@@ -335,7 +334,6 @@ pero las imagenes directamente se borraban. No lo pude solucionar. Así que opt�
 
 /* estilo del mensaje de error por no ingresar un nombre */
 #mensajeCampoVacíoNombre {
-  display: none;
   margin: 3px;
   padding: 5px;
   justify-content: center;
@@ -350,7 +348,6 @@ pero las imagenes directamente se borraban. No lo pude solucionar. Así que opt�
 
 /* mensaje de error por no seleccionar una opción de piedra, papel o tijera */
 #mensajeSinSeleccion {
-  display: none;
   margin: 3px;
   padding: 5px;
   justify-content: center;

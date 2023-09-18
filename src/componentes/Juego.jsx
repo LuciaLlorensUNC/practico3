@@ -1,6 +1,38 @@
 import "../App.css";
 
-function Juego({nombre, jugadaUsuario, jugadaComputadora, ganadorRonda, setGanadorRonda, puntajeComputadora, puntajeUsuario, setPuntajeComputadora, setPuntajeUsuario, empates, setEmpates}) {
+function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
+    setMostrarInterfaz, setNumeroDeRonda,
+    jugadaUsuario, jugadaComputadora, 
+    setGanadorRonda,
+    setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
+        //tengo que ver cómo hago porque se muestra la elección del usuario y 
+        //la computadora antes de apretar el botón jugar, por lo que puede 
+        //hacer que se permita que cambie la elección el usuario al 
+        // ver que no va ganar.
+    
+    //Tengo que ver cómo hago para que no sea tan horrible este mensaje :v
+    const MostrarMensajeNombreError = () => {
+        if (nombre === "") {
+        setMensajeNombreError(true);
+        setMostrarInterfaz(false);
+        console.log("no hay nombre");
+    } else {
+        setMensajeNombreError(false);
+        mostrarEmpezarJuego();
+    }
+    };
+
+    const MostrarMensajeOpcionError = () => {
+        if (jugadaUsuario === null) {
+            setMensajeOpcionError(true);
+            setMostrarInterfaz(false);
+            console.log("no hay jugada");
+        } else {
+            setMensajeNombreError(false);
+            mostrarEmpezarJuego();
+        }
+    };
+
     const ResultadoJuego = () => {
         switch (jugadaUsuario) {
             case "piedra":
@@ -42,9 +74,12 @@ function Juego({nombre, jugadaUsuario, jugadaComputadora, ganadorRonda, setGanad
     };
 
     const handleJugarClick = () => {
+        MostrarMensajeNombreError();
+        MostrarMensajeOpcionError();
         const resultadoRonda = ResultadoJuego();
         setGanadorRonda(resultadoRonda);
         SumaPuntajes(resultadoRonda);
+        aumentoNumeroRondas();
       };
 
     const SumaPuntajes = (resultado) => {
@@ -52,8 +87,8 @@ function Juego({nombre, jugadaUsuario, jugadaComputadora, ganadorRonda, setGanad
             case "Gana la computadora":
                 setPuntajeComputadora(prevPuntajeComputadora => prevPuntajeComputadora += 1);
                 break;
-            case "Gana el usuario":
-                setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario += 1);
+            case "Gana " + nombre:
+                setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario + 1);
                 break;
             case "Empate":
                 setEmpates(prevEmpates => prevEmpates += 1);
@@ -64,14 +99,19 @@ function Juego({nombre, jugadaUsuario, jugadaComputadora, ganadorRonda, setGanad
         };
     };
 
+    // Cambia el estado para mostrar el cuadro de resultados. 
+    const mostrarEmpezarJuego = () => {
+        setMostrarInterfaz(true);
+      };
+
+    const aumentoNumeroRondas = () => {
+        setNumeroDeRonda(prevNumeroRonda => prevNumeroRonda += 1 );
+      };
+
     return (
-        <div>
-            <div className="botón">
-              {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
-              <button type="button" id="botónJugar" onClick={handleJugarClick}> Jugar! </button>
-              <p>{ganadorRonda}</p>
-            </div>
-           
+        <div className="botón">
+            {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
+            <button type="button" id="botónJugar" onClick={handleJugarClick}> Jugar! </button> 
         </div>
     );
 }

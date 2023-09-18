@@ -1,6 +1,6 @@
 import "../App.css";
 
-function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
+export function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
     return (
         <div className="puntajes">
               <div className="punteroUsuario">
@@ -17,5 +17,3 @@ function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
     );
 }
 //después podría ver si puedo hacerlo con {setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario += 1)}
-
-export default Marcador;

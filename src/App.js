@@ -1,39 +1,35 @@
 import React from 'react';
-import ObtencionNombre from './componentes/ObtencionNombre.jsx';
+import { useState } from 'react';
+import './App.css';
 import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
-import './App.css';
+import ObtencionNombre from './componentes/ObtencionNombre.jsx';
 import Jugadas from './componentes/Jugadas.jsx';
 import Juego from './componentes/Juego.jsx';
-import { useState } from 'react';
-import Marcador from './componentes/Marcador.jsx';
+import {Marcador} from './componentes/Marcador.jsx';
+import Resultado from './componentes/Resultado.jsx';
 
 function App() {
-  const [jugadaUsuario, setJugadaUsuario] = useState("ninguna");
-  const [jugadaComputadora, setJugadaComputadora] = useState('');
-  const [mostrarInterfaz, setMostrarInterfaz] = useState(true);
+  const [jugadaUsuario, setJugadaUsuario] = useState(null);
+  const [jugadaComputadora, setJugadaComputadora] = useState(null);
+  const [mostrarInterfaz, setMostrarInterfaz] = useState(false);
   const [nombre, setNombreJugador] = useState("");
   const [saludo, setSaludar] = useState(false);
-  const [mensajeNombreError, setMensajeNombreError] = useState("");
-  //const [resultadoJuego, setResultadoJuego] = useState("ninguno");
-  const [ganadorRonda, setGanadorRonda] = useState("ninguno");
+  const [mensajeNombreError, setMensajeNombreError] = useState(false);
+  const [ganadorRonda, setGanadorRonda] = useState(null);
   const [puntajeUsuario, setPuntajeUsuario] = useState(0);
   const [puntajeComputadora, setPuntajeComputadora] = useState(0);
   const [empates, setEmpates] = useState(0);
+  const [numeroDeRonda, setNumeroDeRonda] = useState(0);
+  const [mensajeOpcionError, setMensajeOpcionError] = useState(false);
 
   const CambiarNombre = (e) => {
     setNombreJugador(e.target.value);
-    if (e.target.value !== '') {
+    if (nombre === null) {
+      setSaludar(false);
+    } else if (nombre !== null) {
         setSaludar(true);
-    } else {
-        setSaludar(false);
-        setMensajeNombreError("Ingresa un nombre para jugar!");
     }
-};
-
-const mostrarEmpezarJuego = () => {
-  // Cambia el estado para mostrar la interfaz. 
-  setMostrarInterfaz(true);
 };
   
   return (
@@ -56,12 +52,14 @@ const mostrarEmpezarJuego = () => {
             </div>
 
             <div>
-              <Jugadas setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} />
+              <Jugadas setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} mensajeOpcionError={mensajeOpcionError}/>
             </div>
 
             <div>
               {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
-              <Juego nombre={nombre} jugadaUsuario={jugadaUsuario} jugadaComputadora={jugadaComputadora} ganadorRonda={ganadorRonda} setGanadorRonda={setGanadorRonda} 
+              <Juego nombre={nombre} setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError}
+              setMostrarInterfaz={setMostrarInterfaz} setNumeroDeRonda={setNumeroDeRonda}
+              jugadaUsuario={jugadaUsuario} jugadaComputadora={jugadaComputadora} ganadorRonda={ganadorRonda} setGanadorRonda={setGanadorRonda} 
               puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} empates={empates}
               setPuntajeComputadora={setPuntajeComputadora} setPuntajeUsuario={setPuntajeUsuario} setEmpates={setEmpates}/>
             </div>
@@ -76,7 +74,7 @@ const mostrarEmpezarJuego = () => {
           {mostrarInterfaz && (
             <div className="empezamosElJuego" id="empezamosElJuego">
               <div className="rondas">
-                <p id="numeroDeRonda" />
+                <p id="numeroDeRonda"> Ronda N° {numeroDeRonda}</p>
                 <p>{nombre} eligió {jugadaUsuario}</p>
                 <p>La computadora eligió {jugadaComputadora}</p>
                 <p id="resultadoRonda"> {ganadorRonda} </p>
@@ -84,10 +82,7 @@ const mostrarEmpezarJuego = () => {
               {/*Espacio para el conteo de los puntajes generales*/}
               <Marcador nombre={nombre} puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} empates={empates}/>
               {/*Espacio para presentar el resultado final (mejor de 3 o 5 rondas)*/}
-              <div className="resultadoFinal" id="resultadoFinal_">
-                <p id="títuloResultadoFinal">Resultado final:</p>
-                <p id="resultadoFinal" />
-              </div>
+              <Resultado nombre={nombre} puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} numeroDeRonda={numeroDeRonda} />
             </div>
           )}
           

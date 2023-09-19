@@ -4,6 +4,8 @@ import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
 function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
+  
+  // En el caso de que se seleccione el botón piedra, papel o tijera se cambia el estado de jugadaUsuario
   const CambioPiedra = (e) => { 
     setJugadaUsuario("piedra");
     console.log("piedra");
@@ -16,7 +18,7 @@ function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
 
     const CambioTijera = (e) => {
       setJugadaUsuario("tijera");
-      console.log("tumama");
+      console.log("tijera");
     };
 
     return (

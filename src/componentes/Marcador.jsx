@@ -6,6 +6,7 @@ import "../App.css";
 // A pesar de que había revisado este y otros componentes sin encontrar otra exportación
 // por defecto de "Marcador"
 export function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
+  
     return (
         <div className="puntajes">
               <div className="punteroUsuario">

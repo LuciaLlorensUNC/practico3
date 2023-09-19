@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, setBotonJugar }) {
+  
+  // establezco las variables ganadorFinal y CuadroResultadoFinal con su estado inicial
   const [ganadorFinal, setGanadorFinal] = useState(null);
   const [CuadroResultadoFinal, setCuadroResultadoFinal] = useState(false);
 
+  // Establezco que en el caso de una serie de condiciones se obtenga el ganador final del juego
   useEffect(() => {
     console.log("puntajeComputadora:", puntajeComputadora);
     console.log("puntajeUsuario:", puntajeUsuario);
@@ -14,6 +17,7 @@ function Resultado({ nombre, puntajeComputadora, puntajeUsuario, numeroDeRonda, 
       if (puntajeComputadora > puntajeUsuario) {
         setGanadorFinal("Gana la computadora");
         setCuadroResultadoFinal(true);
+        // en el caso de se obtenga un ganador final saco el botón jugar
         setBotonJugar(false);
         console.log("gana la compu");
       } else if (puntajeUsuario > puntajeComputadora) {

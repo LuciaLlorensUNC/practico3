@@ -1,35 +1,32 @@
 import "../App.css";
 import { useState, useEffect } from "react";
 
-function Juego({nombre, mensajeNombreError, mensajeOpcionError,
-    setMensajeNombreError, setMensajeOpcionError,
-    setMostrarInterfaz, setNumeroDeRonda,
-    jugadaUsuario, jugadaComputadora,  setJugadaComputadora,
-    setGanadorRonda,
+function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrarInterfaz, 
+    jugadaUsuario,  setJugadaComputadora,
+    setNumeroDeRonda,setGanadorRonda,
     setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
     
+    // Guardo la info en simultáneo en variables locales para evitar problemas de actualización
     const [nombreLocal, setNombreLocal] = useState(nombre);
     const [jugadaUsuarioLocal, setJugadaUsuarioLocal] = useState(null);
       
-    // Observar cambios en 'nombre' y actualizar 'nombreLocal'
+    // Me permite ver los cambios en "nombre" y actualizar "nombreLocal"
     useEffect(() => {
         setNombreLocal(nombre);
     }, [nombre]);
       
-    // Observar cambios en 'jugadaUsuario' y actualizar 'jugadaUsuarioLocal'
+    // Me permite ver los cambios en "jugadaUsuario" y actualizar "jugadaUsuarioLocal"
     useEffect(() => {
         setJugadaUsuarioLocal(jugadaUsuario);
     }, [jugadaUsuario]);
 
-    
-    //Tengo que ver cómo hago para que no sea tan horrible este mensaje :v
-    
-    let auxiliarNombreError = false;
-    let auxiliarOpcionError = false;
     // Tuve muchísimos problemas que tienen que ver con las actualizaciones usando
     // "set..." por lo que tuve que guardar esa info en simultaneo en variables
     // para poder usarlas acá sin problemas de actualizaciones de la página.
-
+    let auxiliarNombreError = false;
+    let auxiliarOpcionError = false;
+    
+    // Función que hacen que se muestre el mensaje de error en el caso de que no se ingrese un nombre
     const MostrarMensajeNombreError = () => {
         if (nombreLocal === null) {
             setMensajeNombreError(true);
@@ -40,6 +37,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
         }
     };
 
+    // Función que hacen que se muestre el mensaje de error en el caso de que no seleccione una jugada
     const MostrarMensajeOpcionError = () => {
         if (jugadaUsuarioLocal === null) {
             setMensajeOpcionError(true);
@@ -50,6 +48,8 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
         }
     };
 
+    // En el caso de que se muestren los mensajes de error, no se muestra el cuadro en el que se muestra la
+    // información de la ronda
     const OcultarInterfaz = () => {
         if (auxiliarNombreError || auxiliarOpcionError) {
             setMostrarInterfaz(false);
@@ -59,7 +59,8 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
             console.log("La interfaz está en true");
         }
     }
-
+    
+    // Función que obtiene una jugada aleatoria de la computadora y actualiza el estado de la misma.
     const ObtenerJugadaComputadora = () => {
         const lista = ["piedra", "papel", "tijera"];
         const numero = Math.floor(Math.random()*3);
@@ -67,6 +68,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
         return (lista[numero]);
     };
 
+    // Función que contiene la lógica del juego, compara las jugadas de la computadora y del usuario y un ganador de la ronda
     const ResultadoJuego = (obtuveJugadaComputadora) => {
         switch (jugadaUsuario) {
             case "piedra":
@@ -106,7 +108,8 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
                     return "default ResultadoJuego total";
         };
     };
-
+    
+    // Función que suma los puntajes de los jugadores, actualizando los estados de los mismos
     const SumaPuntajes = (resultado) => {
         switch (resultado) {
             case "Gana la computadora":
@@ -124,17 +127,19 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
         };
     };
 
+    // función que aumenta el número de ronda
     const aumentoNumeroRondas = () => {
         setNumeroDeRonda(prevNumeroRonda => prevNumeroRonda += 1 );
       };
 
-      //algo sigue estando mal, tras mostrar los mensajes de error, la página se actualiza de forma
-      // incorrecta y me sale el caso default
+    // función que se ejecuta al clickear el botón Jugar!, llama a todas las demás funciones en orden
+    // primero los mensajes de error y el cuadro de las rondas
     const handleJugarClick = () => {
         MostrarMensajeNombreError();
         MostrarMensajeOpcionError();
         OcultarInterfaz();
 
+        // posteriormente, en el caso de que no haya mensajes de error, se ejecutan las demás funciones que hacen al juego
         if (!auxiliarNombreError && !auxiliarOpcionError) {
             const obtuveJugadaComputadora = ObtenerJugadaComputadora()
             const resultadoRonda = ResultadoJuego(obtuveJugadaComputadora, jugadaUsuarioLocal, nombreLocal);
@@ -146,7 +151,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
 
     return (
         <div className="botón">
-            {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
+            {/*Botón que al ser presionado ejecuta la función handleJugarClick*/}
                 <button 
                     type="button" 
                     id="botónJugar" 

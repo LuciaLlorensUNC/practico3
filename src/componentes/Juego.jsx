@@ -5,10 +5,20 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
     jugadaUsuario,  setJugadaComputadora,
     setNumeroDeRonda,setGanadorRonda,
     setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
-    
+
     // Guardo la info en simultáneo en variables locales para evitar problemas de actualización
     const [nombreLocal, setNombreLocal] = useState(nombre);
     const [jugadaUsuarioLocal, setJugadaUsuarioLocal] = useState(null);
+      
+    // Observar cambios en 'nombre' y actualizar 'nombreLocal'
+    useEffect(() => {
+        setNombreLocal(nombre);
+    }, [nombre]);
+      
+    // Observar cambios en 'jugadaUsuario' y actualizar 'jugadaUsuarioLocal'
+    useEffect(() => {
+        setJugadaUsuarioLocal(jugadaUsuario);
+    }, [jugadaUsuario]);
       
     // Me permite ver los cambios en "nombre" y actualizar "nombreLocal"
     useEffect(() => {
@@ -139,7 +149,6 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
         MostrarMensajeOpcionError();
         OcultarInterfaz();
 
-        // posteriormente, en el caso de que no haya mensajes de error, se ejecutan las demás funciones que hacen al juego
         if (!auxiliarNombreError && !auxiliarOpcionError) {
             const obtuveJugadaComputadora = ObtenerJugadaComputadora()
             const resultadoRonda = ResultadoJuego(obtuveJugadaComputadora, jugadaUsuarioLocal, nombreLocal);

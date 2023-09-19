@@ -1,5 +1,10 @@
 import "../App.css";
 
+// Tuve que exportar de esta forma y no por defecto debido a que sino me salía
+// un error que no estaba pudiendo solucionar:
+// ("A module cannot have multiple default exports.ts(2528)").
+// A pesar de que había revisado este y otros componentes sin encontrar otra exportación
+// por defecto de "Marcador"
 export function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) {
     return (
         <div className="puntajes">
@@ -16,4 +21,3 @@ export function Marcador({nombre, puntajeComputadora, puntajeUsuario, empates}) 
             </div>
     );
 }
-//después podría ver si puedo hacerlo con {setPuntajeUsuario(prevPuntajeUsuario => prevPuntajeUsuario += 1)}

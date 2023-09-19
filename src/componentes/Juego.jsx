@@ -1,42 +1,61 @@
 import "../App.css";
 
-function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
+function Juego({nombre, mensajeNombreError, mensajeOpcionError,
+    setMensajeNombreError, setMensajeOpcionError,
     setMostrarInterfaz, setNumeroDeRonda,
-    jugadaUsuario, jugadaComputadora, 
+    jugadaUsuario, jugadaComputadora,  setJugadaComputadora,
     setGanadorRonda,
     setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
-        //tengo que ver cómo hago porque se muestra la elección del usuario y 
-        //la computadora antes de apretar el botón jugar, por lo que puede 
-        //hacer que se permita que cambie la elección el usuario al 
-        // ver que no va ganar.
     
     //Tengo que ver cómo hago para que no sea tan horrible este mensaje :v
+    
+    let auxiliarNombreError = false;
+    let auxiliarOpcionError = false;
+    // Tuve muchísimos problemas que tienen que ver con las actualizaciones usando
+    // "set..." por lo que tuve que guardar esa info en simultaneo en variables
+    // para poder usarlas acá sin problemas de actualizaciones de la página.
+
     const MostrarMensajeNombreError = () => {
-        if (nombre === "") {
-        setMensajeNombreError(true);
-        setMostrarInterfaz(false);
-        console.log("no hay nombre");
-    } else {
-        setMensajeNombreError(false);
-        mostrarEmpezarJuego();
-    }
+        if (nombre === null) {
+            setMensajeNombreError(true);
+            auxiliarNombreError = true;
+        } else {
+            setMensajeNombreError(false);
+            auxiliarNombreError = false;
+        }
     };
 
     const MostrarMensajeOpcionError = () => {
         if (jugadaUsuario === null) {
             setMensajeOpcionError(true);
-            setMostrarInterfaz(false);
-            console.log("no hay jugada");
+            auxiliarOpcionError = true;
         } else {
-            setMensajeNombreError(false);
-            mostrarEmpezarJuego();
+            setMensajeOpcionError(false);
+            auxiliarOpcionError = false;
         }
     };
 
-    const ResultadoJuego = () => {
+    const OcultarInterfaz = () => {
+        if (auxiliarNombreError || auxiliarOpcionError) {
+            setMostrarInterfaz(false);
+            console.log("La interfaz está en false");
+        } else {
+            setMostrarInterfaz(true);
+            console.log("La interfaz está en true");
+        }
+    }
+
+    const ObtenerJugadaComputadora = () => {
+        const lista = ["piedra", "papel", "tijera"];
+        const numero = Math.floor(Math.random()*3);
+        setJugadaComputadora(lista[numero]);
+        return (lista[numero]);
+    };
+
+    const ResultadoJuego = (obtuveJugadaComputadora) => {
         switch (jugadaUsuario) {
             case "piedra":
-                switch (jugadaComputadora) {
+                switch (obtuveJugadaComputadora) {
                     case "piedra":
                         return "Empate";
                     case "papel":
@@ -47,7 +66,7 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
                         return "chau";
                 }
             case "papel":
-                switch (jugadaComputadora) {
+                switch (obtuveJugadaComputadora) {
                     case "piedra":
                         return "Gana " + nombre;
                     case "papel":
@@ -58,7 +77,7 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
                         return "hasta luego";
                 }
             case "tijera":
-                switch (jugadaComputadora) {
+                switch (obtuveJugadaComputadora) {
                     case "piedra":
                          return "Gana la computadora";
                     case "papel":
@@ -72,15 +91,6 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
                     return "hola";
         };
     };
-
-    const handleJugarClick = () => {
-        MostrarMensajeNombreError();
-        MostrarMensajeOpcionError();
-        const resultadoRonda = ResultadoJuego();
-        setGanadorRonda(resultadoRonda);
-        SumaPuntajes(resultadoRonda);
-        aumentoNumeroRondas();
-      };
 
     const SumaPuntajes = (resultado) => {
         switch (resultado) {
@@ -99,19 +109,34 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError,
         };
     };
 
-    // Cambia el estado para mostrar el cuadro de resultados. 
-    const mostrarEmpezarJuego = () => {
-        setMostrarInterfaz(true);
-      };
-
     const aumentoNumeroRondas = () => {
         setNumeroDeRonda(prevNumeroRonda => prevNumeroRonda += 1 );
+      };
+
+      //algo sigue estando mal, tras mostrar los mensajes de error, la página se actualiza de forma
+      // incorrecta y me sale el caso default
+    const handleJugarClick = () => {
+        MostrarMensajeNombreError();
+        MostrarMensajeOpcionError();
+        OcultarInterfaz();
+
+        if (!mensajeNombreError && !mensajeOpcionError) {
+            const obtuveJugadaComputadora = ObtenerJugadaComputadora()
+            const resultadoRonda = ResultadoJuego(obtuveJugadaComputadora);
+            setGanadorRonda(resultadoRonda);
+            SumaPuntajes(resultadoRonda);
+            aumentoNumeroRondas();
+        }
       };
 
     return (
         <div className="botón">
             {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
-            <button type="button" id="botónJugar" onClick={handleJugarClick}> Jugar! </button> 
+                <button 
+                    type="button" 
+                    id="botónJugar" 
+                    onClick={handleJugarClick}> Jugar! 
+                </button>
         </div>
     );
 }

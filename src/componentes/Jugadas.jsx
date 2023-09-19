@@ -3,29 +3,20 @@ import Papel from '../img/Papel.jpg';
 import Piedra from '../img/Piedra.jpg';
 import Tijera1 from '../img/Tijera1.jpg';
 
-function Jugadas({jugadaUsuario, setJugadaUsuario, setJugadaComputadora, mensajeOpcionError}) {
-  const ObtenerJugadaComputadora = (e) => {
-    const lista = ["piedra", "papel", "tijera"];
-    const numero = Math.floor(Math.random()*3);
-    setJugadaComputadora(lista[numero]);
-  };
-
+function Jugadas({jugadaUsuario, setJugadaUsuario, mensajeOpcionError }) {
   const CambioPiedra = (e) => { 
     setJugadaUsuario("piedra");
     console.log("piedra");
-    ObtenerJugadaComputadora();
     };
 
     const CambioPapel = (e) => {
       setJugadaUsuario("papel");
       console.log("papel");
-      ObtenerJugadaComputadora();
     };
 
     const CambioTijera = (e) => {
       setJugadaUsuario("tijera");
       console.log("tumama");
-      ObtenerJugadaComputadora();
     };
 
     return (

@@ -1,6 +1,6 @@
 import '../App.css';
 
-function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError}) {
+function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError, inputRef}) {
     return (
         <div className="bloque" id="nombreJugador">
             <label htmlFor="jugador">Jugador:</label>
@@ -9,6 +9,8 @@ function ObtencionNombre({nombre, saludo, onChange, mensajeNombreError}) {
                 <input
                     id="jugador"
                     type="text"
+                    ref={inputRef}
+                    value={nombre === null ? '' : nombre}
                     placeholder="Ingresa un nombre!"
                     onChange={onChange}
                     required=""

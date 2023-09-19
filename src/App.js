@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useRef } from 'react';
 import './App.css';
 import SarahConnor from './img/SarahConnor.png';
 import Terminator1 from './img/Terminator1.png';
@@ -8,12 +9,13 @@ import Jugadas from './componentes/Jugadas.jsx';
 import Juego from './componentes/Juego.jsx';
 import {Marcador} from './componentes/Marcador.jsx';
 import Resultado from './componentes/Resultado.jsx';
+import Reinicio from './componentes/Reinicio';
 
 function App() {
   const [jugadaUsuario, setJugadaUsuario] = useState(null);
   const [jugadaComputadora, setJugadaComputadora] = useState(null);
   const [mostrarInterfaz, setMostrarInterfaz] = useState(false);
-  const [nombre, setNombreJugador] = useState("");
+  const [nombre, setNombreJugador] = useState(null);
   const [saludo, setSaludar] = useState(false);
   const [mensajeNombreError, setMensajeNombreError] = useState(false);
   const [ganadorRonda, setGanadorRonda] = useState(null);
@@ -22,6 +24,8 @@ function App() {
   const [empates, setEmpates] = useState(0);
   const [numeroDeRonda, setNumeroDeRonda] = useState(0);
   const [mensajeOpcionError, setMensajeOpcionError] = useState(false);
+  const [botonJugar, setBotonJugar] = useState(true);
+  const inputRef = useRef(null);
 
   const CambiarNombre = (e) => {
     setNombreJugador(e.target.value);
@@ -30,8 +34,8 @@ function App() {
     } else if (nombre !== null) {
         setSaludar(true);
     }
-};
-  
+  };
+
   return (
     <>
       <header>
@@ -48,25 +52,42 @@ function App() {
             </div>
 
             <div>
-              <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} onChange={CambiarNombre}  />
+              <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} onChange={CambiarNombre}  
+                inputRef={inputRef}
+              />
             </div>
 
             <div>
-              <Jugadas setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} mensajeOpcionError={mensajeOpcionError}/>
+              <Jugadas setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} mensajeOpcionError={mensajeOpcionError} setBotonJugar={setBotonJugar}
+                jugadaComputadora={jugadaComputadora}
+              />
             </div>
 
             <div>
               {/*Botón que al ser presionado ejecuta la función determinarGanadorRonda(jugadaUsuario)*/}
-              <Juego nombre={nombre} setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError}
-              setMostrarInterfaz={setMostrarInterfaz} setNumeroDeRonda={setNumeroDeRonda}
-              jugadaUsuario={jugadaUsuario} jugadaComputadora={jugadaComputadora} ganadorRonda={ganadorRonda} setGanadorRonda={setGanadorRonda} 
-              puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} empates={empates}
-              setPuntajeComputadora={setPuntajeComputadora} setPuntajeUsuario={setPuntajeUsuario} setEmpates={setEmpates}/>
+              {botonJugar && (
+                <Juego nombre={nombre} setMostrarInterfaz={setMostrarInterfaz} botonJugar={botonJugar}
+                setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError} 
+                setNumeroDeRonda={setNumeroDeRonda} ganadorRonda={ganadorRonda} setGanadorRonda={setGanadorRonda}
+                jugadaUsuario={jugadaUsuario} puntajeUsuario={puntajeUsuario} setPuntajeUsuario={setPuntajeUsuario}
+                setJugadaComputadora={setJugadaComputadora}
+                jugadaComputadora={jugadaComputadora} puntajeComputadora={puntajeComputadora} setPuntajeComputadora={setPuntajeComputadora}
+                empates={empates} setEmpates={setEmpates} setBotonJugar={setBotonJugar}
+                mensajeNombreError={mensajeNombreError} mensajeOpcionError={mensajeOpcionError}
+              />
+              )}
             </div>
 
-            <div className="botón">
+            <div>
               {/*Botón que al ser presionado ejecuta la función borrarCampos()*/}
-              <button type="button" id="botónReiniciar"> Reiniciar </button>
+              <Reinicio setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} 
+                setMostrarInterfaz={setMostrarInterfaz} setNombreJugador={setNombreJugador} setSaludar={setSaludar}
+                setMensajeNombreError={setMensajeNombreError} setGanadorRonda={setGanadorRonda} 
+                setPuntajeUsuario={setPuntajeUsuario} setPuntajeComputadora={setPuntajeComputadora}
+                setEmpates={setEmpates} setNumeroDeRonda={setNumeroDeRonda}
+                setMensajeOpcionError={setMensajeOpcionError} setBotonJugar={setBotonJugar}
+                inputRef={inputRef}
+              />
             </div>
           </div>
 
@@ -82,7 +103,10 @@ function App() {
               {/*Espacio para el conteo de los puntajes generales*/}
               <Marcador nombre={nombre} puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} empates={empates}/>
               {/*Espacio para presentar el resultado final (mejor de 3 o 5 rondas)*/}
-              <Resultado nombre={nombre} puntajeComputadora={puntajeComputadora} puntajeUsuario={puntajeUsuario} numeroDeRonda={numeroDeRonda} />
+              <Resultado nombre={nombre} puntajeComputadora={puntajeComputadora} 
+              puntajeUsuario={puntajeUsuario} numeroDeRonda={numeroDeRonda} 
+              setBotonJugar={setBotonJugar} botonJugar={botonJugar}
+              />
             </div>
           )}
           

@@ -1,9 +1,8 @@
 import "../App.css";
 
-function Reinicio({setJugadaUsuario, setJugadaComputadora, setMostrarInterfaz,
-    setBotonJugar, setEmpates, setGanadorRonda, setMensajeNombreError, setNombreJugador,
-    setNumeroDeRonda, setPuntajeUsuario, setPuntajeComputadora, setSaludar,
-    setMensajeOpcionError, inputRef}) {
+function Reinicio({setMostrarInterfaz, setBotonJugar,setJugadaUsuario, setJugadaComputadora, 
+    setNombreJugador,setMensajeNombreError, setSaludar, inputRef, setMensajeOpcionError,
+    setEmpates, setGanadorRonda, setNumeroDeRonda, setPuntajeUsuario, setPuntajeComputadora}) {
     
     // función que se ejecuta al apretar el botón Reiniciar
     const handleReinicioClick = () => {

@@ -90,7 +90,7 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
                     case "tijera":
                         return "Gana " + nombre;
                     default:
-                        return "chau";
+                        return "default case jugadaUsuario piedra";
                 }
             case "papel":
                 switch (obtuveJugadaComputadora) {
@@ -101,7 +101,7 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
                     case "tijera":
                         return "Gana la computadora";
                     default:
-                        return "hasta luego";
+                        return "default case jugadaUsuario papel";
                 }
             case "tijera":
                 switch (obtuveJugadaComputadora) {
@@ -112,10 +112,10 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
                     case "tijera":
                         return "Empate"; 
                     default:
-                        return "adiós";
+                        return "default case jugadaUsuario tijera";
                 }
                 default:
-                    return "default ResultadoJuego total";
+                    return "default jugadaUsuario";
         };
     };
     
@@ -132,7 +132,7 @@ function Juego({nombre, setMensajeNombreError, setMensajeOpcionError, setMostrar
                 setEmpates(prevEmpates => prevEmpates += 1);
                 break;
             default:
-                console.log("default");
+                console.log("default SumaPuntajes");
                 break;
         };
     };

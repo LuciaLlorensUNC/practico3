@@ -57,42 +57,38 @@ function App() {
             
             {/*Espacio para ingresar el nombre del usuario, saludar y obtener el mensaje de error*/}
             <div>
-              <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} onChange={CambiarNombre}  
-                inputRef={inputRef}
+              <ObtencionNombre nombre={nombre} saludo={saludo} mensajeNombreError={mensajeNombreError} 
+              onChange={CambiarNombre} inputRef={inputRef}
               />
             </div>
 
             {/*Espacio para los botones de opciones piedra, papel o tijera*/}
             <div>
-              <Jugadas setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} mensajeOpcionError={mensajeOpcionError} setBotonJugar={setBotonJugar}
-                jugadaComputadora={jugadaComputadora}
+              <Jugadas jugadaUsuario={jugadaUsuario} setJugadaUsuario={setJugadaUsuario} 
+              mensajeOpcionError={mensajeOpcionError}
+                
               />
             </div>
 
             <div>
               {/*Botón que al ser presionado ejecuta la función handleJugarClick en el componente Juego y muestra el cuadro con la información de rondas*/}
               {botonJugar && (
-                <Juego nombre={nombre} setMostrarInterfaz={setMostrarInterfaz} botonJugar={botonJugar}
-                setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError} 
-                setNumeroDeRonda={setNumeroDeRonda} ganadorRonda={ganadorRonda} setGanadorRonda={setGanadorRonda}
-                jugadaUsuario={jugadaUsuario} puntajeUsuario={puntajeUsuario} setPuntajeUsuario={setPuntajeUsuario}
-                setJugadaComputadora={setJugadaComputadora}
-                jugadaComputadora={jugadaComputadora} puntajeComputadora={puntajeComputadora} setPuntajeComputadora={setPuntajeComputadora}
-                empates={empates} setEmpates={setEmpates} setBotonJugar={setBotonJugar}
-                mensajeNombreError={mensajeNombreError} mensajeOpcionError={mensajeOpcionError}
+                <Juego nombre={nombre} setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError} setMostrarInterfaz={setMostrarInterfaz} botonJugar={botonJugar}
+                jugadaUsuario={jugadaUsuario} setJugadaComputadora={setJugadaComputadora}
+                setNumeroDeRonda={setNumeroDeRonda} setGanadorRonda={setGanadorRonda}
+                setPuntajeComputadora={setPuntajeComputadora} setPuntajeUsuario={setPuntajeUsuario} setEmpates={setEmpates}
               />
               )}
             </div>
 
             <div>
               {/*Botón que al ser presionado ejecuta la función Reinicio*/}
-              <Reinicio setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora} 
-                setMostrarInterfaz={setMostrarInterfaz} setNombreJugador={setNombreJugador} setSaludar={setSaludar}
-                setMensajeNombreError={setMensajeNombreError} setGanadorRonda={setGanadorRonda} 
-                setPuntajeUsuario={setPuntajeUsuario} setPuntajeComputadora={setPuntajeComputadora}
-                setEmpates={setEmpates} setNumeroDeRonda={setNumeroDeRonda}
-                setMensajeOpcionError={setMensajeOpcionError} setBotonJugar={setBotonJugar}
-                inputRef={inputRef}
+              <Reinicio setMostrarInterfaz={setMostrarInterfaz} setBotonJugar={setBotonJugar} 
+              setJugadaUsuario={setJugadaUsuario} setJugadaComputadora={setJugadaComputadora}
+              setNombreJugador={setNombreJugador} setSaludar={setSaludar} inputRef={inputRef}
+              setMensajeNombreError={setMensajeNombreError} setMensajeOpcionError={setMensajeOpcionError}
+              setEmpates={setEmpates} setGanadorRonda={setGanadorRonda} setNumeroDeRonda={setNumeroDeRonda}
+              setPuntajeUsuario={setPuntajeUsuario} setPuntajeComputadora={setPuntajeComputadora}
               />
             </div>
           </div>

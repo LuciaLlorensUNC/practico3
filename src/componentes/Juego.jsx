@@ -1,4 +1,5 @@
 import "../App.css";
+import { useState, useEffect } from "react";
 
 function Juego({nombre, mensajeNombreError, mensajeOpcionError,
     setMensajeNombreError, setMensajeOpcionError,
@@ -6,6 +7,20 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
     jugadaUsuario, jugadaComputadora,  setJugadaComputadora,
     setGanadorRonda,
     setPuntajeComputadora, setPuntajeUsuario, setEmpates}) {
+    
+    const [nombreLocal, setNombreLocal] = useState(nombre);
+    const [jugadaUsuarioLocal, setJugadaUsuarioLocal] = useState(null);
+      
+    // Observar cambios en 'nombre' y actualizar 'nombreLocal'
+    useEffect(() => {
+        setNombreLocal(nombre);
+    }, [nombre]);
+      
+    // Observar cambios en 'jugadaUsuario' y actualizar 'jugadaUsuarioLocal'
+    useEffect(() => {
+        setJugadaUsuarioLocal(jugadaUsuario);
+    }, [jugadaUsuario]);
+
     
     //Tengo que ver cómo hago para que no sea tan horrible este mensaje :v
     
@@ -16,7 +31,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
     // para poder usarlas acá sin problemas de actualizaciones de la página.
 
     const MostrarMensajeNombreError = () => {
-        if (nombre === null) {
+        if (nombreLocal === null) {
             setMensajeNombreError(true);
             auxiliarNombreError = true;
         } else {
@@ -26,7 +41,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
     };
 
     const MostrarMensajeOpcionError = () => {
-        if (jugadaUsuario === null) {
+        if (jugadaUsuarioLocal === null) {
             setMensajeOpcionError(true);
             auxiliarOpcionError = true;
         } else {
@@ -88,7 +103,7 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
                         return "adiós";
                 }
                 default:
-                    return "hola";
+                    return "default ResultadoJuego total";
         };
     };
 
@@ -120,9 +135,9 @@ function Juego({nombre, mensajeNombreError, mensajeOpcionError,
         MostrarMensajeOpcionError();
         OcultarInterfaz();
 
-        if (!mensajeNombreError && !mensajeOpcionError) {
+        if (!auxiliarNombreError && !auxiliarOpcionError) {
             const obtuveJugadaComputadora = ObtenerJugadaComputadora()
-            const resultadoRonda = ResultadoJuego(obtuveJugadaComputadora);
+            const resultadoRonda = ResultadoJuego(obtuveJugadaComputadora, jugadaUsuarioLocal, nombreLocal);
             setGanadorRonda(resultadoRonda);
             SumaPuntajes(resultadoRonda);
             aumentoNumeroRondas();

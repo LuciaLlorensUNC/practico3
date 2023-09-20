@@ -29,6 +29,8 @@ function App() {
   const [mensajeOpcionError, setMensajeOpcionError] = useState(false);
   const [botonJugar, setBotonJugar] = useState(true);
   const inputRef = useRef(null);
+  const [imagen1, setImagen1] = useState(false);
+  const [imagen2, setImagen2] = useState(false);
 
   // actualizo el nombre del jugador con lo ingresado en el input y saludo
   const CambiarNombre = (e) => {
@@ -43,11 +45,14 @@ function App() {
   return (
     <>
       <header>
-        <div className="juego">
+          {imagen1 && (
+          <div className="juego">
           {/* Imagen de la izquierda, aparece con el resultado final */}
           <div className="img" id="img1">
             <img src={SarahConnor} alt="Sarah Connor" />
           </div>
+          )}
+        
 
           <div className="panelDeControl" id="panelDeControl">
             <div className="base">
@@ -111,11 +116,13 @@ function App() {
               />
             </div>
           )}
-          
-          {/* Imagen de la derecha, que aparece con el resultado final */}
-          <div className="img" id="img2">
-            <img src={Terminator1} alt="Terminator" />
-          </div>
+
+              {imagen2 && (
+              {/* Imagen de la derecha, que aparece con el resultado final */}
+              <div className="img" id="img2">
+              <img src={Terminator1} alt="Terminator" />
+              </div>
+              )} 
         </div>
       </header>
     </>

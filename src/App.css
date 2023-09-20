@@ -314,7 +314,6 @@ input::placeholder {
 
 /*Estilos de imágenes finales*/
 #img1 {
-  display:none;
   position: fixed;
   left: 0; /*Que se pegue al borde izquierdo*/
   opacity: 0.9;
@@ -322,7 +321,6 @@ input::placeholder {
 }
 
 #img2 {
-  display: none;
   position: fixed;
   right: 0; /*Que se pegue al borde derecho*/
   opacity: 0.8;
